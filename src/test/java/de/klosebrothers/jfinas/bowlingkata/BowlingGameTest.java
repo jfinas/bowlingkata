@@ -23,7 +23,7 @@ public class BowlingGameTest {
 
         BowlingGame testGame = new BowlingGame(testFrames);
         int expected = 0;
-        int actual = testGame.calculateScore();
+        int actual = testGame.getScore();
         Assertions.assertEquals(expected, actual);
     }
 
@@ -44,7 +44,7 @@ public class BowlingGameTest {
 
         BowlingGame testGame = new BowlingGame(testFrames);
         int expected = 7;
-        int actual = testGame.calculateScore();
+        int actual = testGame.getScore();
         Assertions.assertEquals(expected, actual);
     }
 
@@ -65,7 +65,7 @@ public class BowlingGameTest {
         };
         BowlingGame testGame = new BowlingGame(testFrames);
         int expected = 17 + 7;
-        int actual = testGame.calculateScore();
+        int actual = testGame.getScore();
         Assertions.assertEquals(expected, actual);
     }
 
@@ -85,7 +85,7 @@ public class BowlingGameTest {
         };
         BowlingGame testGame = new BowlingGame(testFrames);
         int expected = 15 + 7;
-        int actual = testGame.calculateScore();
+        int actual = testGame.getScore();
         Assertions.assertEquals(expected, actual);
     }
 
@@ -105,7 +105,7 @@ public class BowlingGameTest {
         };
         BowlingGame testGame = new BowlingGame(testFrames);
         int expected = 17 + 7 + 8;
-        int actual = testGame.calculateScore();
+        int actual = testGame.getScore();
         Assertions.assertEquals(expected, actual);
     }
 
@@ -127,7 +127,7 @@ public class BowlingGameTest {
         };
         BowlingGame testGame = new BowlingGame(testFrames);
         int expected = 17 + 7 + 18;
-        int actual = testGame.calculateScore();
+        int actual = testGame.getScore();
         Assertions.assertEquals(expected, actual);
     }
 
@@ -149,7 +149,7 @@ public class BowlingGameTest {
         };
         BowlingGame testGame = new BowlingGame(testFrames);
         int expected = 17 + 7 + 15;
-        int actual = testGame.calculateScore();
+        int actual = testGame.getScore();
         Assertions.assertEquals(expected, actual);
     }
 
@@ -171,7 +171,7 @@ public class BowlingGameTest {
         };
         BowlingGame testGame = new BowlingGame(testFrames);
         int expected = 17 + 7 + 10 + 8;
-        int actual = testGame.calculateScore();
+        int actual = testGame.getScore();
         Assertions.assertEquals(expected, actual);
     }
 
@@ -194,7 +194,7 @@ public class BowlingGameTest {
         };
         BowlingGame testGame = new BowlingGame(testFrames);
         int expected = 10 * 30;
-        int actual = testGame.calculateScore();
+        int actual = testGame.getScore();
         Assertions.assertEquals(expected, actual);
     }
 
@@ -216,7 +216,7 @@ public class BowlingGameTest {
         };
         BowlingGame testGame = new BowlingGame(testFrames);
         int expected = 9 * 10;
-        int actual = testGame.calculateScore();
+        int actual = testGame.getScore();
         Assertions.assertEquals(expected, actual);
     }
 
@@ -238,7 +238,7 @@ public class BowlingGameTest {
         };
         BowlingGame testGame = new BowlingGame(testFrames);
         int expected = 10 * 15;
-        int actual = testGame.calculateScore();
+        int actual = testGame.getScore();
         Assertions.assertEquals(expected, actual);
     }
 }

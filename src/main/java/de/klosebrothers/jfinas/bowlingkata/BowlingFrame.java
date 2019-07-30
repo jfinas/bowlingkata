@@ -1,6 +1,11 @@
 package de.klosebrothers.jfinas.bowlingkata;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@Getter
 public class BowlingFrame {
     private char[] throwList;
 
@@ -28,6 +33,7 @@ public class BowlingFrame {
         }
     }
 
+    @JsonIgnore
     public int getFirstThrowValue() {
         return calculateThrowValue(0);
     }
@@ -37,15 +43,18 @@ public class BowlingFrame {
      *
      * @return the calculated score
      */
+    @JsonIgnore
     public int getScore() {
         if (isStrike() || isSpare()) return 10;
         else return calculateThrowValue(0) + calculateThrowValue(1);
     }
 
+    @JsonIgnore
     public boolean isStrike() {
         return throwList[0] == 'X';
     }
 
+    @JsonIgnore
     public boolean isSpare() {
         return throwList[1] == '/';
     }

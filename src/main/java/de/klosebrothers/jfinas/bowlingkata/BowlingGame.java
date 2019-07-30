@@ -1,5 +1,11 @@
 package de.klosebrothers.jfinas.bowlingkata;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+
+@NoArgsConstructor
+@Getter
 public class BowlingGame {
     BowlingFrame[] bowlingFrames;
 
@@ -12,7 +18,7 @@ public class BowlingGame {
      *
      * @return the calculated score
      */
-    public int calculateScore() {
+    public int getScore() {
         int score = 0;
         for (int i = 0; i < 10; i++) {
             BowlingFrame currentFrame = bowlingFrames[i];
