@@ -1,14 +1,11 @@
-package de.klosebrothers.jfinas.bowlingkata;
+package de.klosebrothers.jfinas.bowlingkata.bowlinggame;
 
 import de.klosebrothers.jfinas.bowlingkata.bowlingframe.BowlingFrame;
 import de.klosebrothers.jfinas.bowlingkata.bowlingframe.InvalidFrameException;
-import de.klosebrothers.jfinas.bowlingkata.bowlinggame.BowlingGame;
-import de.klosebrothers.jfinas.bowlingkata.bowlinggame.InvalidGameException;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.Test;
 
-@SpringBootTest
+
 public class BowlingGameTest {
     @Test
     public void calculateScoreShouldReturnZeroGivenOnliMissesShouldReturnZero() {
@@ -246,7 +243,7 @@ public class BowlingGameTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test(expected = InvalidGameException.class)
+    @Test
     public void selfCheckShouldThrowIfFrameListIsTooShort() throws InvalidGameException {
         BowlingFrame[] testFrames = {
                 new BowlingFrame("5/".toCharArray()),
@@ -263,14 +260,14 @@ public class BowlingGameTest {
         };
         BowlingGame testGame = new BowlingGame(testFrames);
         try {
-            testGame.selfCheck();
+            Assertions.assertThrows(InvalidGameException.class, testGame::selfCheck);
         } catch (InvalidFrameException e) {
             ; // do nothing, because these are handled and tested elsewhere
         }
 
     }
 
-    @Test(expected = InvalidGameException.class)
+    @Test
     public void selfCheckShouldThrowIfFrameListIsTooLong() throws InvalidGameException {
         BowlingFrame[] testFrames = {
                 new BowlingFrame("5/".toCharArray()),
@@ -289,7 +286,7 @@ public class BowlingGameTest {
         };
         BowlingGame testGame = new BowlingGame(testFrames);
         try {
-            testGame.selfCheck();
+            Assertions.assertThrows(InvalidGameException.class, testGame::selfCheck);
         } catch (InvalidFrameException e) {
             ; // do nothing, because these are handled and tested elsewhere
         }

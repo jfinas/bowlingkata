@@ -1,12 +1,9 @@
-package de.klosebrothers.jfinas.bowlingkata;
+package de.klosebrothers.jfinas.bowlingkata.bowlingframe;
 
-import de.klosebrothers.jfinas.bowlingkata.bowlingframe.BowlingFrame;
-import de.klosebrothers.jfinas.bowlingkata.bowlingframe.InvalidFrameException;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.Test;
 
-@SpringBootTest
+
 public class BowlingFrameTest {
     @Test
     public void calculateThrowValueShouldReturnZeroGivenMiss() {
@@ -136,26 +133,27 @@ public class BowlingFrameTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test(expected = InvalidFrameException.class)
+    @Test
     public void selfCheckShouldThrowGivenIllegalStrike() throws InvalidFrameException {
         BowlingFrame testFrame = new BowlingFrame("XX".toCharArray());
-        testFrame.selfCheck();
+        Assertions.assertThrows(InvalidFrameException.class, testFrame::selfCheck);
     }
 
-    @Test(expected = InvalidFrameException.class)
+    //
+    @Test
     public void selfCheckShouldThrowGivenScoreOverTen() throws InvalidFrameException {
         BowlingFrame testFrame = new BowlingFrame("56".toCharArray());
-        testFrame.selfCheck();
+        Assertions.assertThrows(InvalidFrameException.class, testFrame::selfCheck);
     }
 
     /*
      * Test can result in false positives, as getScore() will sometimes return values over 10 for illegal characters,
      * also resulting in the expected exception but wrong exception message!
      */
-    @Test(expected = InvalidFrameException.class)
+    @Test
     public void selfCheckShouldThrowGivenIllegalCharacters() throws InvalidFrameException {
         BowlingFrame testFrame = new BowlingFrame("Z5".toCharArray());
-        testFrame.selfCheck();
+        Assertions.assertThrows(InvalidFrameException.class, testFrame::selfCheck);
     }
 
     @Test
@@ -164,4 +162,22 @@ public class BowlingFrameTest {
         testFrame.selfCheck();
     }
 
+    @Test
+    public void selfCheckShouldThrowGivenTooShortFrameList() {
+        BowlingFrame testFrame = new BowlingFrame("5".toCharArray());
+        Assertions.assertThrows(InvalidFrameException.class, testFrame::selfCheck);
+    }
+
+    @Test
+    public void selfCheckShouldThrowGivenTooLongFrameList() {
+        BowlingFrame testFrame = new BowlingFrame("533".toCharArray());
+        Assertions.assertThrows(InvalidFrameException.class, testFrame::selfCheck);
+    }
+
+    @Test
+    public void selfCheckShouldNotThrowGivenCorrectLengthFrameList() {
+        BowlingFrame testFrame = new BowlingFrame("53".toCharArray());
+        testFrame.selfCheck();
+    }
+//
 }
