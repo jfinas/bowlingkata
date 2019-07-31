@@ -40,7 +40,7 @@ public class BowlingFrame {
      * @throws InvalidFrameException if the frame is invalid in any way
      */
     public BowlingFrame selfCheck() throws InvalidFrameException {
-        String allowedCharacters = "[0-9[/X-]]";
+        String allowedCharacters = "[0-9[ /X-]]";
 
         if (throwList.length < 2)
             throw new InvalidFrameException("Not enough Throws in this Frame!");

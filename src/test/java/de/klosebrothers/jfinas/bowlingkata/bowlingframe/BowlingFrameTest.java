@@ -158,6 +158,18 @@ public class BowlingFrameTest {
 
     @Test
     public void selfCheckShouldExitSuccesfullyGivenValidFrame() throws InvalidFrameException {
+        BowlingFrame testFrame = new BowlingFrame("54".toCharArray());
+        testFrame.selfCheck();
+    }
+
+    @Test
+    public void selfCheckShouldExitSuccesfullyGivenValidStrike() throws InvalidFrameException {
+        BowlingFrame testFrame = new BowlingFrame("X ".toCharArray());
+        testFrame.selfCheck();
+    }
+
+    @Test
+    public void selfCheckShouldExitSuccesfullyGivenValidSpare() throws InvalidFrameException {
         BowlingFrame testFrame = new BowlingFrame("5/".toCharArray());
         testFrame.selfCheck();
     }
