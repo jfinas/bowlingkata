@@ -1,11 +1,11 @@
 package de.klosebrothers.jfinas.bowlingkata.bowlingframe;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @NoArgsConstructor
-@Getter
 public class BowlingFrame {
     private char[] throwList;
 

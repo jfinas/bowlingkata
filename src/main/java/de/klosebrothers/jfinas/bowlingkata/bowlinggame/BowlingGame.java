@@ -2,12 +2,12 @@ package de.klosebrothers.jfinas.bowlingkata.bowlinggame;
 
 import de.klosebrothers.jfinas.bowlingkata.bowlingframe.BowlingFrame;
 import de.klosebrothers.jfinas.bowlingkata.bowlingframe.InvalidFrameException;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+@Data
 @NoArgsConstructor
-@Getter
 public class BowlingGame {
     BowlingFrame[] bowlingFrames;
 
