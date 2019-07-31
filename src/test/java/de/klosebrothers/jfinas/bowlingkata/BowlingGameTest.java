@@ -241,4 +241,54 @@ public class BowlingGameTest {
         int actual = testGame.getScore();
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test(expected = InvalidGameException.class)
+    public void selfCheckShouldThrowIfFrameListIsTooShort() throws InvalidGameException {
+        BowlingFrame[] testFrames = {
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5 ".toCharArray()),
+        };
+        BowlingGame testGame = new BowlingGame(testFrames);
+        try {
+            testGame.selfCheck();
+        } catch (InvalidFrameException e) {
+            ; // do nothing, because these are handled and tested elsewhere
+        }
+
+    }
+
+    @Test(expected = InvalidGameException.class)
+    public void selfCheckShouldThrowIfFrameListIsTooLong() throws InvalidGameException {
+        BowlingFrame[] testFrames = {
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5/".toCharArray()),
+                new BowlingFrame("5 ".toCharArray()),
+                new BowlingFrame("5 ".toCharArray()),
+                new BowlingFrame("5 ".toCharArray()),
+        };
+        BowlingGame testGame = new BowlingGame(testFrames);
+        try {
+            testGame.selfCheck();
+        } catch (InvalidFrameException e) {
+            ; // do nothing, because these are handled and tested elsewhere
+        }
+
+    }
 }

@@ -30,4 +30,23 @@ class BowlingGame {
         }
         return score;
     }
+
+
+    /**
+     * Method to check if a the game is valid, meaning it has the correct number of frames and all frames are valid.
+     *
+     * @return itself
+     * @throws InvalidGameException  when there is an incorrect number of frames
+     * @throws InvalidFrameException when one of the frames is invalid
+     */
+    BowlingGame selfCheck() throws InvalidGameException, InvalidFrameException {
+        if (bowlingFrames.length < 12)
+            throw new InvalidGameException("There are not enough frames!");
+        if (bowlingFrames.length > 12)
+            throw new InvalidGameException("There are too many Frames!");
+        for (BowlingFrame bowlingFrame : bowlingFrames) {
+            bowlingFrame.selfCheck();
+        }
+        return this;
+    }
 }
