@@ -6,10 +6,10 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
-public class BowlingGame {
+class BowlingGame {
     BowlingFrame[] bowlingFrames;
 
-    public BowlingGame(BowlingFrame[] bowlingFrames) {
+    BowlingGame(BowlingFrame[] bowlingFrames) {
         this.bowlingFrames = bowlingFrames;
     }
 
@@ -18,7 +18,7 @@ public class BowlingGame {
      *
      * @return the calculated score
      */
-    public int getScore() {
+    public int getScore() { //needs to be public for the JSON-Serializer to find
         int score = 0;
         for (int i = 0; i < 10; i++) {
             BowlingFrame currentFrame = bowlingFrames[i];

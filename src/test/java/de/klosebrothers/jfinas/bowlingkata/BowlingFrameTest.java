@@ -134,4 +134,25 @@ public class BowlingFrameTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test(expected = InvalidFrameException.class)
+    public void selfCheckShouldThrowOnIllegalStrike() throws InvalidFrameException {
+        BowlingFrame testFrame = new BowlingFrame("XX".toCharArray());
+        testFrame.selfCheck();
+    }
+
+    @Test(expected = InvalidFrameException.class)
+    public void selfCheckShouldThrowOnScoreOverTen() throws InvalidFrameException {
+        BowlingFrame testFrame = new BowlingFrame("56".toCharArray());
+        testFrame.selfCheck();
+    }
+
+    /*
+     * Test can result in false positives, as getScore() will sometimes return values over 10 for illegal characters,
+     * also resulting in the expected exception but wrong exception message!
+     */
+    @Test(expected = InvalidFrameException.class)
+    public void selfCheckShouldThrowOnIllegalCharacters() throws InvalidFrameException {
+        BowlingFrame testFrame = new BowlingFrame("Z5".toCharArray());
+        testFrame.selfCheck();
+    }
 }

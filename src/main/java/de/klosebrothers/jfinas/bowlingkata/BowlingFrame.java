@@ -6,10 +6,10 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
-public class BowlingFrame {
+class BowlingFrame {
     private char[] throwList;
 
-    public BowlingFrame(char[] throwList) {
+    BowlingFrame(char[] throwList) {
         this.throwList = throwList;
     }
 
@@ -19,7 +19,7 @@ public class BowlingFrame {
      * @param throwNumber the position of the throw in the Frame
      * @return the numeric value of the given throw
      */
-    public int calculateThrowValue(int throwNumber) {
+    int calculateThrowValue(int throwNumber) {
         switch (throwList[throwNumber]) {
             case '-':
             case ' ':
@@ -33,8 +33,26 @@ public class BowlingFrame {
         }
     }
 
+    /**
+     * Selfcheck method to ensure a frame is correct
+     *
+     * @return itself
+     * @throws InvalidFrameException if the frame is invalid in any way
+     */
+    BowlingFrame selfCheck() throws InvalidFrameException {
+        String allowedCharacters = "[0-9[/X-]]{2}";
+
+        if (!throwList.toString().matches(allowedCharacters))
+            throw new InvalidFrameException("There is an Illegal Character in the Frame!");
+        if (throwList[0] == 'X' && throwList[1] != ' ') //invalid strike
+            throw new InvalidFrameException("You cannot hit any pins after a Strike!");
+        if (getScore() > 10)
+            throw new InvalidFrameException("You cannot Score more than 10 pins in one Frame!");
+        return this;
+    }
+
     @JsonIgnore
-    public int getFirstThrowValue() {
+    int getFirstThrowValue() {
         return calculateThrowValue(0);
     }
 
@@ -44,18 +62,18 @@ public class BowlingFrame {
      * @return the calculated score
      */
     @JsonIgnore
-    public int getScore() {
+    int getScore() {
         if (isStrike() || isSpare()) return 10;
         else return calculateThrowValue(0) + calculateThrowValue(1);
     }
 
     @JsonIgnore
-    public boolean isStrike() {
+    boolean isStrike() {
         return throwList[0] == 'X';
     }
 
     @JsonIgnore
-    public boolean isSpare() {
+    boolean isSpare() {
         return throwList[1] == '/';
     }
 }

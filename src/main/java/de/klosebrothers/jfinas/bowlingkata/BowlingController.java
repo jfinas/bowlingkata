@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class BowlingController {
-    @RequestMapping(value = "/bowlinggame/score", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/bowlinggame/score",
+            method = RequestMethod.POST,
+            consumes = "application/json",
+            produces = "application/json")
     // alternative namen: "/bowlinggame", "/bowlingscore"
     // TODO: write integration-test?
     // TODO: implement error-handling & robustness-measures
