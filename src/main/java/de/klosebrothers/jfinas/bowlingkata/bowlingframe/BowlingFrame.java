@@ -1,4 +1,4 @@
-package de.klosebrothers.jfinas.bowlingkata;
+package de.klosebrothers.jfinas.bowlingkata.bowlingframe;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
@@ -6,10 +6,10 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
-class BowlingFrame {
+public class BowlingFrame {
     private char[] throwList;
 
-    BowlingFrame(char[] throwList) {
+    public BowlingFrame(char[] throwList) {
         this.throwList = throwList;
     }
 
@@ -19,7 +19,7 @@ class BowlingFrame {
      * @param throwNumber the position of the throw in the Frame
      * @return the numeric value of the given throw
      */
-    int calculateThrowValue(int throwNumber) {
+    public int calculateThrowValue(int throwNumber) {
         switch (throwList[throwNumber]) {
             case '-':
             case ' ':
@@ -39,7 +39,7 @@ class BowlingFrame {
      * @return itself
      * @throws InvalidFrameException if the frame is invalid in any way
      */
-    BowlingFrame selfCheck() throws InvalidFrameException {
+    public BowlingFrame selfCheck() throws InvalidFrameException {
         String allowedCharacters = "[0-9[/X-]]{2}";
 
         if (!throwList.toString().matches(allowedCharacters))
@@ -52,7 +52,7 @@ class BowlingFrame {
     }
 
     @JsonIgnore
-    int getFirstThrowValue() {
+    public int getFirstThrowValue() {
         return calculateThrowValue(0);
     }
 
@@ -62,18 +62,18 @@ class BowlingFrame {
      * @return the calculated score
      */
     @JsonIgnore
-    int getScore() {
+    public int getScore() {
         if (isStrike() || isSpare()) return 10;
         else return calculateThrowValue(0) + calculateThrowValue(1);
     }
 
     @JsonIgnore
-    boolean isStrike() {
+    public boolean isStrike() {
         return throwList[0] == 'X';
     }
 
     @JsonIgnore
-    boolean isSpare() {
+    public boolean isSpare() {
         return throwList[1] == '/';
     }
 }

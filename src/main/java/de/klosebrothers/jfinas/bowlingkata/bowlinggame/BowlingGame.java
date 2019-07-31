@@ -1,15 +1,17 @@
-package de.klosebrothers.jfinas.bowlingkata;
+package de.klosebrothers.jfinas.bowlingkata.bowlinggame;
 
+import de.klosebrothers.jfinas.bowlingkata.bowlingframe.BowlingFrame;
+import de.klosebrothers.jfinas.bowlingkata.bowlingframe.InvalidFrameException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 
 @NoArgsConstructor
 @Getter
-class BowlingGame {
+public class BowlingGame {
     BowlingFrame[] bowlingFrames;
 
-    BowlingGame(BowlingFrame[] bowlingFrames) {
+    public BowlingGame(BowlingFrame[] bowlingFrames) {
         this.bowlingFrames = bowlingFrames;
     }
 
@@ -39,7 +41,7 @@ class BowlingGame {
      * @throws InvalidGameException  when there is an incorrect number of frames
      * @throws InvalidFrameException when one of the frames is invalid
      */
-    BowlingGame selfCheck() throws InvalidGameException, InvalidFrameException {
+    public BowlingGame selfCheck() throws InvalidGameException, InvalidFrameException {
         if (bowlingFrames.length < 12)
             throw new InvalidGameException("There are not enough frames!");
         if (bowlingFrames.length > 12)

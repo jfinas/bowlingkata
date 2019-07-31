@@ -1,5 +1,6 @@
 package de.klosebrothers.jfinas.bowlingkata;
 
+import de.klosebrothers.jfinas.bowlingkata.bowlinggame.BowlingGame;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

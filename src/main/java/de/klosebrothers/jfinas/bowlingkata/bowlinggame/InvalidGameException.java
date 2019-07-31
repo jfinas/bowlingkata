@@ -1,4 +1,4 @@
-package de.klosebrothers.jfinas.bowlingkata;
+package de.klosebrothers.jfinas.bowlingkata.bowlinggame;
 
 public class InvalidGameException extends Exception {
     public InvalidGameException(String message) {

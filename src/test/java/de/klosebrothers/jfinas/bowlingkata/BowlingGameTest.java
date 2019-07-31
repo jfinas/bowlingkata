@@ -1,5 +1,9 @@
 package de.klosebrothers.jfinas.bowlingkata;
 
+import de.klosebrothers.jfinas.bowlingkata.bowlingframe.BowlingFrame;
+import de.klosebrothers.jfinas.bowlingkata.bowlingframe.InvalidFrameException;
+import de.klosebrothers.jfinas.bowlingkata.bowlinggame.BowlingGame;
+import de.klosebrothers.jfinas.bowlingkata.bowlinggame.InvalidGameException;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.boot.test.context.SpringBootTest;
