@@ -1,6 +1,8 @@
 package de.klosebrothers.jfinas.bowlingkata.bowlinggame;
 
-public class InvalidGameException extends Exception {
+import de.klosebrothers.jfinas.bowlingkata.BowlingException;
+
+public class InvalidGameException extends BowlingException {
     public InvalidGameException(String message) {
         super(message);
     }
