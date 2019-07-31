@@ -57,7 +57,7 @@ public class BowlingFrameTest {
     }
 
     @Test
-    public void calculateThrowValueShouldReturnValueOfSecondThrowGivenOne() {
+    public void calculateThrowValueShouldReturnValueOfSecondThrowGivenGivene() {
         BowlingFrame testFrame = new BowlingFrame("55".toCharArray());
         int expected = 5;
         int actual = testFrame.calculateThrowValue(0);
@@ -137,13 +137,13 @@ public class BowlingFrameTest {
     }
 
     @Test(expected = InvalidFrameException.class)
-    public void selfCheckShouldThrowOnIllegalStrike() throws InvalidFrameException {
+    public void selfCheckShouldThrowGivenIllegalStrike() throws InvalidFrameException {
         BowlingFrame testFrame = new BowlingFrame("XX".toCharArray());
         testFrame.selfCheck();
     }
 
     @Test(expected = InvalidFrameException.class)
-    public void selfCheckShouldThrowOnScoreOverTen() throws InvalidFrameException {
+    public void selfCheckShouldThrowGivenScoreOverTen() throws InvalidFrameException {
         BowlingFrame testFrame = new BowlingFrame("56".toCharArray());
         testFrame.selfCheck();
     }
@@ -153,8 +153,15 @@ public class BowlingFrameTest {
      * also resulting in the expected exception but wrong exception message!
      */
     @Test(expected = InvalidFrameException.class)
-    public void selfCheckShouldThrowOnIllegalCharacters() throws InvalidFrameException {
+    public void selfCheckShouldThrowGivenIllegalCharacters() throws InvalidFrameException {
         BowlingFrame testFrame = new BowlingFrame("Z5".toCharArray());
         testFrame.selfCheck();
     }
+
+    @Test
+    public void selfCheckShouldExitSuccesfullyGivenValidFrame() throws InvalidFrameException {
+        BowlingFrame testFrame = new BowlingFrame("5/".toCharArray());
+        testFrame.selfCheck();
+    }
+
 }
