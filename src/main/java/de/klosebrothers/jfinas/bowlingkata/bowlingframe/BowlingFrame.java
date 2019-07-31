@@ -42,6 +42,10 @@ public class BowlingFrame {
     public BowlingFrame selfCheck() throws InvalidFrameException {
         String allowedCharacters = "[0-9[/X-]]";
 
+        if (throwList.length < 2)
+            throw new InvalidFrameException("Not enough Throws in this Frame!");
+        if (throwList.length > 2)
+            throw new InvalidFrameException("Not too Many Throws in this Frame!");
         if (!Character.toString(throwList[0]).matches(allowedCharacters) || !Character.toString(throwList[1]).matches(allowedCharacters))
             throw new InvalidFrameException("There is an Illegal Character in the Frame!");
         if (throwList[0] == 'X' && throwList[1] != ' ') //invalid strike
