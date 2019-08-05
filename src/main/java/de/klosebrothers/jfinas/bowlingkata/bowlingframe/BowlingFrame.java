@@ -61,6 +61,8 @@ public class BowlingFrame {
             throw new InvalidFrameException("You cannot hit any pins after a Strike!: " + throwListToString());
         if (getScore() > 10)
             throw new InvalidFrameException("You cannot Score more than 10 pins in one Frame!: " + throwListToString());
+        if (getScore() == 10 && (!isSpare() && !isStrike()))
+            throw new InvalidFrameException("This actually is a spare!" + throwListToString());
         return this;
     }
 

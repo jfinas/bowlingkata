@@ -187,6 +187,12 @@ public class BowlingFrameTest {
     }
 
     @Test
+    public void selfCheckShouldThrowGivenInvalidScoreOfTen() {
+        BowlingFrame testFrame = new BowlingFrame("91".toCharArray());//this is actually a spare!
+        Assertions.assertThrows(InvalidFrameException.class, testFrame::selfCheck);
+    }
+
+    @Test
     public void selfCheckShouldNotThrowGivenCorrectLengthFrameList() {
         BowlingFrame testFrame = new BowlingFrame("53".toCharArray());
         testFrame.selfCheck();
