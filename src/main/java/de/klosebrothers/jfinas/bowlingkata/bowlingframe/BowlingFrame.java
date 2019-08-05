@@ -2,11 +2,16 @@ package de.klosebrothers.jfinas.bowlingkata.bowlingframe;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.Arrays;
 
 @Data
 @NoArgsConstructor
 public class BowlingFrame {
+    @Getter(onMethod = @__(@JsonIgnore))
+    private final int LEGAL_THROWLIST_LENGTH = 2;
     private char[] throwList;
 
     public BowlingFrame(char[] throwList) {
@@ -33,6 +38,10 @@ public class BowlingFrame {
         }
     }
 
+    @JsonIgnore
+    private String throwListToString() {
+        return Arrays.toString(throwList);
+    }
     /**
      * Selfcheck method to ensure a frame is correct
      *
@@ -42,16 +51,16 @@ public class BowlingFrame {
     public BowlingFrame selfCheck() throws InvalidFrameException {
         String allowedCharacters = "[0-9[ /X-]]";
 
-        if (throwList.length < 2)
-            throw new InvalidFrameException("Not enough Throws in this Frame!");
-        if (throwList.length > 2)
-            throw new InvalidFrameException("Not too Many Throws in this Frame!");
+        if (throwList.length < LEGAL_THROWLIST_LENGTH)
+            throw new InvalidFrameException("Not enough Throws in this Frame!: " + throwListToString());
+        if (throwList.length > LEGAL_THROWLIST_LENGTH)
+            throw new InvalidFrameException("Not too Many Throws in this Frame!: " + throwListToString());
         if (!Character.toString(throwList[0]).matches(allowedCharacters) || !Character.toString(throwList[1]).matches(allowedCharacters))
-            throw new InvalidFrameException("There is an Illegal Character in the Frame!");
+            throw new InvalidFrameException("There is an Illegal Character in the Frame!: " + throwListToString());
         if (throwList[0] == 'X' && throwList[1] != ' ') //invalid strike
-            throw new InvalidFrameException("You cannot hit any pins after a Strike!");
+            throw new InvalidFrameException("You cannot hit any pins after a Strike!: " + throwListToString());
         if (getScore() > 10)
-            throw new InvalidFrameException("You cannot Score more than 10 pins in one Frame!");
+            throw new InvalidFrameException("You cannot Score more than 10 pins in one Frame!: " + throwListToString());
         return this;
     }
 

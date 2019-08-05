@@ -191,5 +191,4 @@ public class BowlingFrameTest {
         BowlingFrame testFrame = new BowlingFrame("53".toCharArray());
         testFrame.selfCheck();
     }
-//
 }

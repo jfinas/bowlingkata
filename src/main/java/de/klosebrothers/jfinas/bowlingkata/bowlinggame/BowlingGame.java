@@ -1,14 +1,18 @@
 package de.klosebrothers.jfinas.bowlingkata.bowlinggame;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.klosebrothers.jfinas.bowlingkata.bowlingframe.BowlingFrame;
 import de.klosebrothers.jfinas.bowlingkata.bowlingframe.InvalidFrameException;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 
 @Data
 @NoArgsConstructor
 public class BowlingGame {
+    @Getter(onMethod = @__(@JsonIgnore))
+    private final int LEGAL_NUM_FRAMES = 12;
     BowlingFrame[] bowlingFrames;
 
     public BowlingGame(BowlingFrame[] bowlingFrames) {
@@ -42,10 +46,10 @@ public class BowlingGame {
      * @throws InvalidFrameException when one of the frames is invalid
      */
     public BowlingGame selfCheck() throws InvalidGameException, InvalidFrameException {
-        if (bowlingFrames.length < 12)
-            throw new InvalidGameException("There are not enough frames!");
-        if (bowlingFrames.length > 12)
-            throw new InvalidGameException("There are too many Frames!");
+        if (bowlingFrames.length < LEGAL_NUM_FRAMES)
+            throw new InvalidGameException("There are not enough frames! Expected: " + LEGAL_NUM_FRAMES);
+        if (bowlingFrames.length > LEGAL_NUM_FRAMES)
+            throw new InvalidGameException("There are too many Frames!" + LEGAL_NUM_FRAMES);
         for (BowlingFrame bowlingFrame : bowlingFrames) {
             bowlingFrame.selfCheck();
         }
